@@ -1,7 +1,3 @@
-import sys
-input = sys.stdin.readline
-# dfs를 사용한 완전탐색
-
 A, B = input().split()
 A = sorted(map(int, A), reverse=True)
 B = int(B)
