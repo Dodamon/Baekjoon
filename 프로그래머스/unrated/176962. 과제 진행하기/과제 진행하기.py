@@ -7,14 +7,16 @@ def solution(plans):
         name, start, playtime = plan
         
         for i, remain in enumerate(remains):
-            # 남아있는 과제중 end이 start 보다 크다면
-            # 남아있는 과제의 end
+            # 남아있는 과제중 end이 현재 과제의 start 보다 크다면
+            # 남아있는 과제의 end시간이 현재 과제의 playtime 만큼 커진다
             if remain[0] > start:
                 remains[i][0] += playtime
                 
         # 남아있는 과제에 과제가 끝나는 시간과 과제 이름을 저장한다
         remains.append([start + playtime, name])
     remains.sort()
+    # 과제들의 끝나는 시간순으로 정렬하면
+    # 먼저 끝나는 시간이 가장 앞으로 오게된다.
 
     return list(map(lambda x: x[1], remains))
 
