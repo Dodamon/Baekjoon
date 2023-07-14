@@ -1,41 +1,22 @@
 def solution(plans):
-    answer = []
-
-    for i, plan in enumerate(plans):
-        name, start, playtime = plan
-        hh, mm = map(int, start.split(':'))
-        times = []
-        time = hh * 60 + mm
-        plans[i] = [name, time, int(playtime)]
-    plans.sort(key=lambda x: x[1])
+    plans = sorted(map(lambda x: [x[0], int(x[1][:2]) * 60 + int(x[1][3:]), int(x[2])], plans), key=lambda x: x[1])
+    # 계획을 시간순이 작은 순서로 정렬한다
     
     remains = []
-    # stack에 남아있는 과제들을 저장한다
-    for i, plan in enumerate(plans):
-
+    for plan in plans:
         name, start, playtime = plan
-        if i == len(plans) - 1:
-            next = 60000000
-        else:
-            next = plans[i+1][1]
-
-        while True:
-            if start + playtime <= next:
-                answer.append(name)
-                start += playtime
-                if remains:
-                    name, playtime = remains.pop()
-                else:
-                    break
-            else:
-                remains.append((name, playtime - (next - start)))
-                break
+        
+        for i, remain in enumerate(remains):
+            # 남아있는 과제중 end이 start 보다 크다면
+            # 남아있는 과제의 end
+            if remain[0] > start:
+                remains[i][0] += playtime
                 
-    while remains:
-        answer.append(remains.pop())
+        # 남아있는 과제에 과제가 끝나는 시간과 과제 이름을 저장한다
+        remains.append([start + playtime, name])
+    remains.sort()
 
-    return answer
-
+    return list(map(lambda x: x[1], remains))
 
 print(solution(
     [["aaa", "12:00", "20"], ["bbb", "12:10", "30"], ["ccc", "12:40", "10"]]))
