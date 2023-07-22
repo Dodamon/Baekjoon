@@ -19,9 +19,6 @@ def solution(n):
     answer = int("0b" + next_permutation(binary), 2)
 
     if answer == n:
-        if all(n == "1" for n in binary):
-            answer = int("0b10" + ("1" * (len(binary) - 1)), 2)
-        else:
-            answer = int("0b10" + "".join(sorted(binary[1:])), 2)
+        answer = int("0b10" + "".join(sorted(binary[1:])), 2)
     return answer
 
