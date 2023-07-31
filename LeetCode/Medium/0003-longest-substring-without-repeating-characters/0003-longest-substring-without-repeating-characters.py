@@ -5,6 +5,7 @@ class Solution(object):
         """
         :type s: str
         :rtype: int
+        슬라이딩 윈도우
         """
         index = defaultdict(lambda : -1)
         dp = [1 for _ in range(len(s))]
