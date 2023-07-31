@@ -17,7 +17,10 @@ class Solution(object):
             if i == 0:
                 index[char] = i
                 continue
-
+                
+            # 이전에 방문했던 문자일때
+            # left 위치를 갱신한다
+        
             if index[char] != -1:
                 for l in range(left, index[char]):
                     index[s[l]] = -1
