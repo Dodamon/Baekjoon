@@ -37,7 +37,7 @@ def solution(maps):
             if maps[y][x] != 'X' and not visited[y][x]:
                 answer.append(bfs(visited, y, x))
     
-    if len(answer) == 0:
+    if not answer:
         answer.append(-1)
     else:
         answer.sort()
