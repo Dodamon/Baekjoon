@@ -1,9 +1,9 @@
 import heapq
-from collections import defaultdict
+from collections import OrderedDict
 
 def solution(cacheSize, cities):
     answer = 0
-    cache = []
+    cache = OrderedDict()
 
     if cacheSize == 0:
         return len(cities) * 5
@@ -12,14 +12,13 @@ def solution(cacheSize, cities):
         city = city.lower()
         # hit
         if city in cache:
-            cache.remove(city)
-            cache.append(city)
+            cache.pop(city)
             answer += 1
         # miss
         else:
             if len(cache) == cacheSize:
-                cache[:] = cache[1:]
-            cache.append(city)
+                cache.popitem(last=False)
             answer += 5
-
+        cache[city] = i
+        
     return answer
