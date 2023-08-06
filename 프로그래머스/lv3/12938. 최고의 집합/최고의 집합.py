@@ -6,14 +6,13 @@ def solution(n, s):
         answer = [-1]
         return answer
     
+    # 최대의 곱은 모든수가 골고루 클때 발생한다
     div, mod = s//n, s%n
     
-    answer = [div for _ in range(n)]
-    
-    index = n - 1
-    while mod > 0:
-        answer[index] += 1
-        index -= 1
-        mod -= 1
+    for i in range(n):
+        if i >= n - mod:
+            answer.append(div + 1)
+        else:
+            answer.append(div)
     
     return answer
