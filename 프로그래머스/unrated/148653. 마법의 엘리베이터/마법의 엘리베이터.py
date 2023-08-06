@@ -25,7 +25,14 @@ def solution(storey):
         # 엘리베이터를 움직이는 두가지 방법
         # 1. 올라간다 (올라갈경우 carry = 1이 되어 앞의 자리수가 하나 올라간다)
         # 2. 내려가다
-        answer = min(move(next, stones + cur % 10), move(next + 1, stones + (10 - cur % 10)))
+        answer = 0
+        if cur % 10 < 5: # 내려간다
+            answer = move(next, stones + cur % 10)
+        elif cur % 10 > 5:# 올라간다
+             answer = move(next + 1, stones + (10 - cur % 10))
+        else:# 내려가거나 올라간다
+            answer = min(move(next, stones + cur % 10), move(next + 1, stones + (10 - cur % 10)))
+            
         return answer
     
     answer = move(storey, 0)
