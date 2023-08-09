@@ -21,5 +21,7 @@ def solution(topping):
         # 막약 둘의 토핑갯수가 같다면 경우의 수가 하나씩 늘어나게된다
         if len(right) == len(left):
             answer += 1
+        elif len(right) < len(left):
+            break
             
     return answer
