@@ -35,6 +35,8 @@ public class Main {
         Storage rightMax = new Storage(0, 0);
 
         int answer = 0;
+        // 윈두우 슬라이딩 처럼 left <= right 일때까지 반복한다
+        // 가장 큰 저장소를 기준으로 left, right가 중앙으로 모인다
         while (left <= right) {
             if (leftMax.y <= storages.get(left).y){
                 answer += leftMax.y * (storages.get(left).x - leftMax.x);
