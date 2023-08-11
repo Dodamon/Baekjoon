@@ -1,27 +1,22 @@
 class Solution
 {
-    public int binarySearch(int mid, int a, int b, int level) {
-        
-        int d = (int) Math.pow(2, (level-2));
-        
-        if (a <= mid && b > mid) {
-            return level;
-        } else if (a <= mid) {
-            return binarySearch(mid-d, a, b, level-1);
-        } else {
-            return binarySearch(mid+d, a, b, level-1);
-        }     
-    }
-    
     public int solution(int n, int a, int b)
     {
-        if (a > b) {
-            int temp = a;
-            a = b;
-            b = temp;
-        } 
+        // 미쳤....따.....
+        // 12345678 이 있을때 1씩 빼서 이진수로 나타내면
+        // 0 : 0000
+        // 1 : 0001
+        // 2 : 0010
+        // 3 : 0011
+        // 4 : 0100
+        // 5 : 0101
+        // 6 : 0110
+        // 7 : 0111
         
-        int answer = binarySearch(n/ 2, a, b, (int) Math.round(Math.log10(n)/Math.log10(2)));
-        return answer;
+        // 0과 1을 xor 연산할경우 0001만 남는다
+        // 3과 6을 xor 연산할경우 0101만 남는다 
+        // 즉 이 길이가.... 2진탐색의 횟수? 가 된다... 미쳤따...
+        
+        return Integer.toBinaryString((a-1)^(b-1)).length();
     }
 }
