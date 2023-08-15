@@ -5,22 +5,23 @@ def solution(n, s, a, b, fares):
 
     INF = 200000001
     answer = INF
-    dist = [[INF] * n for _ in range(n)]
-
+    d = [[INF] * n for _ in range(n)]
+    
+    for x in range(n):
+        d[x][x] = 0
+        
     for u, v, w in fares:
-        dist[u-1][v-1] = w
-        dist[v-1][u-1] = w
+        d[u-1][v-1] = w
+        d[v-1][u-1] = w
         
         
     for k in range(n):
         for i in range(n):
             for j in range(n):
-                if i == j:
-                    dist[i][j] = 0
-                else:
-                    dist[i][j] = min(dist[i][k] + dist[k][j], dist[i][j])
+                if d[i][j] > d[i][k] + d[j][k]:
+                    d[i][j] = d[i][k] + d[k][j]
     
     
     for i in range(n):
-        answer = min(dist[s-1][i] + dist[i][a-1] + dist[i][b-1], answer)
+        answer = min(d[s-1][i] + d[i][a-1] + d[i][b-1], answer)
     return answer
