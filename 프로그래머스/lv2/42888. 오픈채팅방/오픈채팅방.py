@@ -1,4 +1,5 @@
 # 해시
+# O(N)
 def solution(record):
     answer = []
     names = {}
