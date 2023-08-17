@@ -50,7 +50,7 @@ class Solution {
             graph.get(v1).add(v2);
             graph.get(v2).add(v1);
         }
-        System.out.println(graph);
+
         // v1과 v2의 연결을 끊어 가면서 탐색을 시작한다
         // 큐에 넣을때 v2를 넣지 않는다
         for (int i = 0; i < n-1; i++) {
