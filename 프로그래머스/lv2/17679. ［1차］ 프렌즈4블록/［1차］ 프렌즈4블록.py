@@ -9,8 +9,8 @@ def solution(m, n, board):
     
     def pop(y, x, state):
         
-        if x+1 < n and y+1 < m and not popped[y+1][x] and not popped[y][x+1] and not popped[y+1][x+1] and maps[y+1][x] == state and maps[y][x+1] == state and maps[y+1][x+1] == state:
-            print(maps[y][x], y, x)
+        # 인접한 4가지 블럭이 있고 서로 같은 모양으로 생겼다면 ready큐에 넣는다
+        if x+1 < n and y+1 < m and  maps[y+1][x] == maps[y][x+1] == maps[y+1][x+1] == state and popped[y+1][x] == popped[y+1][x+1] == popped[y][x+1] and not popped[y+1][x]:
             ready.add((y, x))
             ready.add((y+1, x))
             ready.add((y+1, x+1))
