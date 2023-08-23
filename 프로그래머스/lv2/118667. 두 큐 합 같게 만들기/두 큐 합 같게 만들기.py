@@ -16,7 +16,7 @@ def solution(queue1, queue2):
     count = 0
     # queue1을 기준으로 target 값보다 크면 pop 아니면 push를 한다
     # queue1이 queue2랑 같거나 or queue2에서 더이상 pop할 원소가 없을때 탐색을 멈춘다
-    while queue2 and queue1 != origin:
+    while queue2:
         if total1 == target:
             answer = count
             break
