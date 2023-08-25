@@ -1,21 +1,20 @@
 def solution(msg):
     answer = []
     idx = 1
-    hashmap = {}
+
+    alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    d = {k:v for (k,v) in zip(alphabet, list(range(1,27)))}
     
-    for i in range(26):
-        hashmap[(chr) (ord("A") + i)] = idx
-        idx += 1
-    
-    i = 0
-    while i < len(msg):
-        j = i + 1
-        while j <= len(msg) and hashmap.get(msg[i:j]) != None:
-            j += 1
+    w = 0
+    idx = 27
+    while w < len(msg):
+        s = w + 1
+        while s <= len(msg) and d.get(msg[w:s]) != None:
+            s += 1
             
-        answer.append(hashmap[msg[i:j-1]])
-        hashmap[msg[i:j]] = idx
+        answer.append(d[msg[w:s-1]])
+        d[msg[w:s]] = idx
         idx += 1
-        i += (j-i-1)
+        w += (s-w-1)
     
     return answer
