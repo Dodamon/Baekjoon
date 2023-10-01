@@ -14,7 +14,7 @@ def solution(m, musicinfos):
         end = end_HH*60 + end_MM
         term = end - start
         
-        # 음악을 편집한다
+        # 음악을 편집한다 : 음중간에 "+"를 넣는다 , 반복되면 반복되는 구간을 더해준다
         l = []
         i = 0
         new_music = "+"
@@ -34,10 +34,10 @@ def solution(m, musicinfos):
             new_music += "+"
             new_music += "+".join(l[:term%len(l)])
             
-        print(new_music)
         infos.append((start, end, title, new_music + "+"))
     infos.sort(key = lambda x: (x[0]-x[1], x[0]))
     
+    # 네오가 기억한 멜로디를 편집한다 : 음중간에 "+"를 넣는다
     i = 0
     new_m = "+"
     while i < len(m):
@@ -47,7 +47,8 @@ def solution(m, musicinfos):
         else:
             new_m += m[i] + "+"
             i += 1
-    
+            
+    # 그 음을 찾으면 바로 출력한다
     for start, end, title, music in infos:
         if new_m in music:
             answer = title
