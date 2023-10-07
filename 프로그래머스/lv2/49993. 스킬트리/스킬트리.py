@@ -9,16 +9,14 @@ def solution(skill, skill_trees):
     
     for tree in skill_trees:
         needSkill = 1
-        isPossible = True
         for alpha in tree:
             if skills[alpha] > needSkill:
-                isPossible = False
                 break
                 
             elif skills[alpha] == needSkill:
                 needSkill += 1
         
-        if isPossible:
+        else:
             answer += 1
             
     return answer
