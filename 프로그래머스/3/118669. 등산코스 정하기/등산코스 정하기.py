@@ -13,9 +13,11 @@ def solution(n, paths, gates, summits):
         graph[i].append((j, w))
         graph[j].append((i, w))
         
+    for summit in summits:
+        visited[summit] = 0
+        
     def dfs(start):
         result = [0, 10000001]
-        visited[start] = 0
         pq = []
         heapq.heappush(pq, (0, start))
 
@@ -30,7 +32,7 @@ def solution(n, paths, gates, summits):
             
             for j, w in graph[i]:
                 next_intens = max(w, intens)
-                if visited[j] > next_intens and j not in summits:
+                if visited[j] > next_intens:
                     heapq.heappush(pq, (next_intens, j))
                     visited[j] = next_intens
         return result
